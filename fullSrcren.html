@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title></title>
+        <style type="text/css">
+            .div1{
+                width: 1000px;height: 500px;
+                border: solid 1px blue;
+            }
+            .test{        
+                width:100%;        
+                background: black;
+                height:100%;
+                min-height: 400px;
+                border: solid 1px red;                
+            }
+            div{
+                color: #fff;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div class="div1" >
+            <div id="div2"  class="test">
+                <div id="div" class="" style="border:solid 1px #ffffff;width:100px;height:40px;">全屏</div>
+                <div id="div3" class="" style="border:solid 1px #ffffff;width:100px;height:40px;">取消全屏</div>
+            </div>
+        </div>
+        
+        
+        <script>
+            (function () {
+                var viewFullScreen = document.getElementById("div");    
+                if (viewFullScreen) {
+                    viewFullScreen.addEventListener("click", function () {
+                        var docElm = document.getElementById("div2");
+                        // var docElm = document.getElementsByName("test");
+                        if (docElm.requestFullscreen) {
+                            docElm.requestFullscreen();
+                        }
+                        else if (docElm.msRequestFullscreen) {
+                            docElm.msRequestFullscreen();
+                        }
+                        else if (docElm.mozRequestFullScreen) {
+                            docElm.mozRequestFullScreen();
+                        }
+                        else if (docElm.webkitRequestFullScreen) {
+                            docElm.webkitRequestFullScreen();
+                        }else{
+                            alert("当前浏览器不支持全屏化操作！");
+                        }
+                    }, false);
+                }
+            
+                var cancelFullScreen = document.getElementById("div3");
+                if (cancelFullScreen) {
+                    cancelFullScreen.addEventListener("click", function () {
+                        if (document.exitFullscreen) {
+                            document.exitFullscreen();
+                        }
+                        else if (document.msExitFullscreen) {
+                            document.msExitFullscreen();
+                        }
+                        else if (document.mozCancelFullScreen) {
+                            document.mozCancelFullScreen();
+                        }
+                        else if (document.webkitCancelFullScreen) {
+                            document.webkitCancelFullScreen();
+                        } else{
+                            alert("当前浏览器不支持全屏化操作！");
+                        }
+                    }, false);
+                }                        
+            })();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Monika的流量统计图</title>
+	<style type="text/css">
+		#chart {
+			width: 800px;
+			height: 400px;
+		}
+	</style>
+</head>
+<body>
+	<div id="chart"></div>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+	<script type="text/javascript">
+		let initChart = function(){
+			option = {
+				title: {
+					text:'TOP10流量消耗',
+				},
+			    tooltip : {
+			        trigger: 'axis',
+			        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+			            type : 'line'        // 默认为直线，可选为：'line' | 'shadow'
+			        }
+			    },
+			    legend: {
+			        data:['上行流量','下行流量']
+			    },
+			    grid: {
+			        left: '3%',
+			        right: '4%',
+			        bottom: '3%',
+			        containLabel: true
+			    },
+			    xAxis : [
+			        {
+			            type : 'category',
+			            splitLine:{
+					　　　　show:false,
+					　　},
+			            data : ['微信','腾讯视频','掌声高铁','爱奇艺','抖音','哗哩哗哩','王者荣耀', '芒果TV', 'QQ', '优酷视频']
+			        }
+			    ],
+			    yAxis : [
+			        {
+			            type : 'value',
+			            splitLine:{
+					　　　　show:false,
+					　　},
+			            name: '流量/GBPS',
+			        }
+			    ],
+			    series : [
+			        {
+			            name:'下行流量',
+			            type:'bar',
+			            stack: '流量',
+			            barWidth : "50%",
+			            data:[320, 332, 301, 334, 390, 330, 320, 350, 311, 350],
+			            itemStyle: {
+				    		normal: {
+					    		color: new echarts.graphic.LinearGradient( 0, 0, 0, 1, [{offset: 0, color: '#FFFF37'}, {offset: 1, color: '#FFFFAA'}]),
+						    },
+						    emphasis: {
+			                    shadowBlur: 10,
+			                    shadowOffsetX: 0,
+			                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+				            }
+						},
+			        },
+			        {
+			            name:'上行流量',
+			            type:'bar',
+			            stack: '流量',
+			            barWidth : "50%",
+			            data:[120, 132, 101, 134, 90, 230, 210, 350, 311, 350],
+			            itemStyle: {
+				    		normal: {
+					    		color: new echarts.graphic.LinearGradient( 0, 0, 0, 1, [{offset: 0, color: '#FFFF37'}, {offset: 1, color: '#FFFFAA'}]),
+						    },
+						    emphasis: {
+			                    shadowBlur: 10,
+			                    shadowOffsetX: 0,
+			                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+				            }
+						},
+			        }
+			    ]
+			};
+			let chart = echarts.init(document.getElementById('chart'));
+			chart.setOption(option);
+		};
+		initChart();
+	</script>
+</body>
+</html>
